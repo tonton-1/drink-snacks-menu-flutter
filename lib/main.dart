@@ -290,7 +290,7 @@ class _DrinksCartState extends State<DrinksCart> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: const Color.fromARGB(255, 135, 193, 0),
+          color: const Color.fromARGB(255, 109, 185, 46),
         ),
         padding: EdgeInsets.all(15),
         margin: EdgeInsets.only(top: 10, left: 10, right: 10),
