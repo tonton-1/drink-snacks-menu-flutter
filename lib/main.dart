@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       home: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: const Text('Flutter Demo Home Page')),
+        appBar: AppBar(
+          title: const Text(''),
+          backgroundColor: const Color.fromARGB(255, 81, 167, 131),
+        ),
         body: Column(children: [DrinkMenu()]),
       ),
     );
@@ -215,7 +218,7 @@ class _QuantitySelectorState extends State<QuantitySelector>
   bool get wantKeepAlive => true;
 
   int quantity = 0;
-  // int get totalPrice => widget.price * quantity;
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -252,6 +255,9 @@ class _QuantitySelectorState extends State<QuantitySelector>
               setState(() {
                 quantity -= 1;
                 widget.onCartUpdate!(-1, -widget.price);
+                print('quantity: $quantity');
+                print('ราคาต่อชิ้น: ${widget.price}');
+                print('ราคารวม: ${widget.price * quantity}');
               });
             }
           },
@@ -347,19 +353,19 @@ class RecommendDrinks extends StatelessWidget {
   final List<Map<String, dynamic>> drinks = const [
     {
       'name': 'Iced Cappuccino',
-      'color': Color(0xFF7EA34D),
+      'color': Color.fromARGB(255, 171, 179, 125),
       'Image':
           'https://www.starbucksathome.com/au/sites/default/files/2022-12/Iced%20Cappuccino%20KV_Long%20Shadow.png',
     },
     {
       'name': 'Iced Coconut Coffee',
-      'color': Color(0xFF4EBEA1),
+      'color': Color.fromARGB(255, 171, 179, 125),
       'Image':
           'https://www.starbucksathome.com/au/sites/default/files/2022-12/Iced%20Coconut%20KV_Short%20Shadow.png',
     },
     {
       'name': 'Iced Mocha',
-      'color': Color(0xFF3A8FB7),
+      'color': Color.fromARGB(255, 171, 179, 125),
       'Image':
           'https://www.starbucksathome.com/au/sites/default/files/2022-12/Iced%20Mocha%20KV_Short%20Shadow.png',
     },
