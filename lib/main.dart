@@ -48,12 +48,18 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'color': Color.fromARGB(255, 81, 167, 131),
       'image': 'images/drinks/Iced_Macchiato.png',
       'price': 95,
+      'description': 'A refreshing iced coffee drink with a hint of vanilla.',
+      'ingredients': ['Espresso', 'Ice', 'Milk', 'Vanilla Syrup'],
+      'DrinkTypeOption': 'Iced',
     },
     {
       'name': 'Sparkling espresso',
       'color': Color.fromARGB(255, 81, 167, 131),
       'image': 'images/drinks/Refresh_SparklingMint.png',
       'price': 85,
+      'description': 'A fizzy and refreshing drink with a hint of mint.',
+      'ingredients': ['Sparkling Water', 'Espresso', 'Mint Syrup'],
+      'DrinkTypeOption': 'Iced',
     },
     {
       'name': 'Vanilla Latte',
@@ -61,6 +67,14 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'image':
           'https://www.starbucksathome.com/au/sites/default/files/2021-06/Vanilla%20Latte_LongShadow_Cream_0.png',
       'price': 90,
+      'description': 'A creamy and sweet vanilla latte.',
+      'ingredients': [
+        'Espresso',
+        'Steamed Milk',
+        'Vanilla Syrup',
+        'Whipped Cream',
+      ],
+      'DrinkTypeOption': 'Hot',
     },
     {
       'name': 'Caffé Americano',
@@ -68,6 +82,9 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'image':
           'https://www.starbucksathome.com/au/sites/default/files/2021-06/3-CaffeAmericano_LongShadow_Cream.png',
       'price': 70,
+      'description': 'A rich and bold coffee with hot water.',
+      'ingredients': ['Espresso', 'Hot Water'],
+      'DrinkTypeOption': 'Hot',
     },
     {
       'name': 'Caffé Mocha',
@@ -75,6 +92,14 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'image':
           'https://www.starbucksathome.com/au/sites/default/files/2021-06/10032021_CafeMocha_LS-min.png',
       'price': 100,
+      'description': 'A rich and chocolatey coffee drink.',
+      'ingredients': [
+        'Espresso',
+        'Steamed Milk',
+        'Chocolate Syrup',
+        'Whipped Cream',
+      ],
+      'DrinkTypeOption': 'blended',
     },
     {
       'name': 'Spiced Flat White',
@@ -82,6 +107,9 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'image':
           'https://www.starbucksathome.com/au/sites/default/files/2021-06/10032021_SpicedExpresso_LS-min.png',
       'price': 80,
+      'description': 'A warm and cozy coffee with a hint of spice.',
+      'ingredients': ['Espresso', 'Steamed Milk', 'Cinnamon', 'Nutmeg'],
+      'DrinkTypeOption': 'Hot',
     },
     {
       'name': 'Freddo Espresso',
@@ -89,6 +117,9 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'image':
           'https://www.starbucksathome.com/au/sites/default/files/2024-01/Freddo%20Espresso%20KV_Transp_Straw_Contact%20Shadow_0.png',
       'price': 65,
+      'description': 'A chilled espresso drink served over ice.',
+      'ingredients': ['Espresso', 'Ice'],
+      'DrinkTypeOption': 'Iced',
     },
     {
       'name': 'White Chocolate Mocha',
@@ -96,6 +127,14 @@ class _DrinkMenuState extends State<DrinkMenu> {
       'image':
           'https://www.starbucksathome.com/au/sites/default/files/2024-08/Starbucks%20SBU_EvergreenRecipes2023_Website_Recipes_Still_WhiteChocolateMocha_1842x1542_Long%20Shadow.png',
       'price': 110,
+      'description': 'A rich and creamy white chocolate mocha.',
+      'ingredients': [
+        'Espresso',
+        'Steamed Milk',
+        'White Chocolate Sauce',
+        'Whipped Cream',
+      ],
+      'DrinkTypeOption': 'blended',
     },
   ];
   @override
@@ -119,78 +158,435 @@ class _DrinkMenuState extends State<DrinkMenu> {
           child: ListView.builder(
             itemCount: myMenu.length,
             itemBuilder: (context, index) {
-              return Container(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                height: 150,
-                padding: EdgeInsets.fromLTRB(0, 5, 10, 10),
-
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Stack(
-                        children: [
-                          Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(25),
-                              child: Container(
-                                width: 90,
-                                height: 90,
-                                color: myMenu[index]['color'],
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child:
-                                      (myMenu[index]['image'].startsWith('http')
-                                          ? Image.network(
-                                            myMenu[index]['image'],
-                                            fit: BoxFit.cover,
-                                          )
-                                          : Image.asset(
-                                            myMenu[index]['image'],
-                                            fit: BoxFit.cover,
-                                          )),
+              return InkWell(
+                onTap: () {
+                  showGeneralDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    barrierLabel: '',
+                    transitionDuration: Duration(milliseconds: 50),
+                    pageBuilder: (context, animation1, animation2) {
+                      return Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Material(
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            child: Stack(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    color: Color.fromARGB(255, 81, 167, 131),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(
+                                                color: const Color.fromARGB(
+                                                  255,
+                                                  81,
+                                                  167,
+                                                  131,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  spacing: 5,
+                                                  children: [
+                                                    Text(
+                                                      myMenu[index]['name'],
+                                                      style: TextStyle(
+                                                        fontSize: 23,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      '${myMenu[index]['price']}฿',
+                                                      style: TextStyle(
+                                                        fontSize: 35,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  (myMenu[index]['image']
+                                                          .startsWith('http')
+                                                      ? Image.network(
+                                                        myMenu[index]['image'],
+                                                        fit: BoxFit.cover,
+                                                        height: 220,
+                                                      )
+                                                      : Image.asset(
+                                                        myMenu[index]['image'],
+                                                        fit: BoxFit.cover,
+                                                        height: 220,
+                                                      )),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Expanded(
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(30),
+                                              topRight: Radius.circular(30),
+                                            ),
+                                            child: Container(
+                                              height: 300,
+                                              width: double.infinity,
+                                              color: const Color.fromARGB(
+                                                255,
+                                                255,
+                                                255,
+                                                255,
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                      30.0,
+                                                      10.0,
+                                                      10.0,
+                                                      10.0,
+                                                    ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  spacing: 10,
+                                                  children: [
+                                                    SizedBox(height: 20),
+                                                    Text(
+                                                      'Description',
+                                                      style: TextStyle(
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myMenu[index]['description'],
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.black54,
+                                                      ),
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                10.0,
+                                                              ),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  10.0,
+                                                                ),
+                                                            child: Container(
+                                                              color:
+                                                                  const Color.fromARGB(
+                                                                    76,
+                                                                    81,
+                                                                    167,
+                                                                    131,
+                                                                  ),
+                                                              width: 70,
+                                                              height: 70,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons
+                                                                        .coffee,
+                                                                    color:
+                                                                        const Color.fromARGB(
+                                                                          255,
+                                                                          81,
+                                                                          167,
+                                                                          131,
+                                                                        ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 4,
+                                                                  ), // เว้นระยะระหว่าง Icon กับ Text
+                                                                  Text(
+                                                                    "300ml",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color:
+                                                                          Color.fromARGB(
+                                                                            255,
+                                                                            81,
+                                                                            167,
+                                                                            131,
+                                                                          ),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                10.0,
+                                                              ),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  10.0,
+                                                                ),
+                                                            child: Container(
+                                                              color:
+                                                                  const Color.fromARGB(
+                                                                    76,
+                                                                    81,
+                                                                    167,
+                                                                    131,
+                                                                  ),
+                                                              width: 70,
+                                                              height: 70,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Icon(
+                                                                    myMenu[index]['DrinkTypeOption'] ==
+                                                                            'Hot'
+                                                                        ? Icons
+                                                                            .local_cafe
+                                                                        : myMenu[index]['DrinkTypeOption'] ==
+                                                                            'Iced'
+                                                                        ? Icons
+                                                                            .ac_unit
+                                                                        : Icons
+                                                                            .local_drink,
+                                                                    color:
+                                                                        const Color.fromARGB(
+                                                                          255,
+                                                                          81,
+                                                                          167,
+                                                                          131,
+                                                                        ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 4,
+                                                                  ), // เว้นระยะระหว่าง Icon กับ Text
+                                                                  Text(
+                                                                    myMenu[index]['DrinkTypeOption'] ==
+                                                                            'Hot'
+                                                                        ? "Hot"
+                                                                        : myMenu[index]['DrinkTypeOption'] ==
+                                                                            'Iced'
+                                                                        ? "Iced"
+                                                                        : "Blended",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color:
+                                                                          Color.fromARGB(
+                                                                            255,
+                                                                            81,
+                                                                            167,
+                                                                            131,
+                                                                          ),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                10.0,
+                                                              ),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  10.0,
+                                                                ),
+                                                            child: Container(
+                                                              color:
+                                                                  const Color.fromARGB(
+                                                                    76,
+                                                                    81,
+                                                                    167,
+                                                                    131,
+                                                                  ),
+                                                              width: 70,
+                                                              height: 70,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons
+                                                                        .do_not_disturb_alt,
+                                                                    color:
+                                                                        const Color.fromARGB(
+                                                                          255,
+                                                                          81,
+                                                                          167,
+                                                                          131,
+                                                                        ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 4,
+                                                                  ), // เว้นระยะระหว่าง Icon กับ Text
+                                                                  Text(
+                                                                    "No sugar",
+                                                                    style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color:
+                                                                          Color.fromARGB(
+                                                                            255,
+                                                                            81,
+                                                                            167,
+                                                                            131,
+                                                                          ),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(height: 10),
+                                                    Text(
+                                                      'Ingredients: ${myMenu[index]['ingredients'].join(', ')}',
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.black54,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Container(
+                  color: const Color.fromARGB(255, 255, 252, 252),
+                  height: 150,
+                  padding: EdgeInsets.fromLTRB(0, 5, 10, 10),
 
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Stack(
                           children: [
-                            Text(
-                              myMenu[index]['name']!,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              'Recommended for you',
-                              style: TextStyle(
-                                fontSize: 13.5,
-                                color: const Color.fromARGB(255, 148, 146, 146),
+                            Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: Container(
+                                  width: 90,
+                                  height: 90,
+                                  color: myMenu[index]['color'],
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child:
+                                        (myMenu[index]['image'].startsWith(
+                                              'http',
+                                            )
+                                            ? Image.network(
+                                              myMenu[index]['image'],
+                                              fit: BoxFit.cover,
+                                            )
+                                            : Image.asset(
+                                              myMenu[index]['image'],
+                                              fit: BoxFit.cover,
+                                            )),
+                                  ),
+                                ),
                               ),
-                            ),
-                            Text(
-                              myMenu[index]['price'].toString() + '฿',
-                              style: TextStyle(fontSize: 24),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: QuantitySelector(
-                        price: myMenu[index]['price'],
-                        onCartUpdate: updateCart,
+
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                myMenu[index]['name']!,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                'Recommended for you',
+                                style: TextStyle(
+                                  fontSize: 13.5,
+                                  color: const Color.fromARGB(
+                                    255,
+                                    148,
+                                    146,
+                                    146,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                myMenu[index]['price'].toString() + '฿',
+                                style: TextStyle(fontSize: 24),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: QuantitySelector(
+                          price: myMenu[index]['price'],
+                          onCartUpdate: updateCart,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
