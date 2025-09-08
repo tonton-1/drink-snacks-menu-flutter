@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RecommendDrinks extends StatelessWidget {
-  RecommendDrinks({super.key});
+  final bool toggleMode;
+  RecommendDrinks({super.key, required this.toggleMode});
   final List<Map<String, dynamic>> drinks = const [
     {
       'name': 'Iced Cappuccino',
@@ -35,9 +36,41 @@ class RecommendDrinks extends StatelessWidget {
     },
   ];
   @override
+  ThemeData lightTheme = ThemeData(
+    primarySwatch: Colors.green,
+    scaffoldBackgroundColor: Colors.white,
+    primaryTextTheme: TextTheme(
+      bodyLarge: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+      bodyMedium: TextStyle(color: const Color.fromARGB(255, 50, 50, 50)),
+      bodySmall: TextStyle(color: const Color.fromARGB(255, 100, 100, 100)),
+    ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.green,
+      titleTextStyle: TextStyle(color: Colors.grey),
+    ),
+
+    drawerTheme: DrawerThemeData(backgroundColor: Colors.white),
+  );
+
+  ThemeData darkTheme = ThemeData(
+    primarySwatch: Colors.green,
+    scaffoldBackgroundColor: const Color.fromARGB(255, 54, 54, 54),
+    primaryTextTheme: TextTheme(
+      bodyLarge: TextStyle(color: const Color.fromARGB(255, 230, 230, 230)),
+      bodyMedium: TextStyle(color: const Color.fromARGB(255, 200, 200, 200)),
+      bodySmall: TextStyle(color: const Color.fromARGB(255, 160, 160, 160)),
+    ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.green,
+      titleTextStyle: TextStyle(color: Colors.white),
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: const Color.fromARGB(255, 54, 54, 54),
+    ),
+  );
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(255, 250, 253, 255),
+      color: toggleMode ? const Color.fromARGB(255, 54, 54, 54) : Colors.white,
       height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -134,12 +167,12 @@ class RecommendDrinks extends StatelessWidget {
                                         child: Container(
                                           height: 300,
                                           width: double.infinity,
-                                          color: const Color.fromARGB(
-                                            255,
-                                            255,
-                                            255,
-                                            255,
-                                          ),
+                                          color:
+                                              toggleMode
+                                                  ? darkTheme
+                                                      .scaffoldBackgroundColor
+                                                  : lightTheme
+                                                      .scaffoldBackgroundColor,
                                           child: Padding(
                                             padding: const EdgeInsets.fromLTRB(
                                               30.0,
@@ -158,15 +191,32 @@ class RecommendDrinks extends StatelessWidget {
                                                   style: TextStyle(
                                                     fontSize: 25,
                                                     fontWeight: FontWeight.bold,
+                                                    color:
+                                                        toggleMode
+                                                            ? darkTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color
+                                                            : lightTheme
+                                                                .primaryTextTheme
+                                                                .bodySmall
+                                                                ?.color,
                                                   ),
                                                 ),
                                                 Text(
                                                   drinks[index]['description'],
                                                   style: TextStyle(
                                                     fontSize: 16,
-                                                    color: const Color(
-                                                      0x89000000,
-                                                    ),
+                                                    color:
+                                                        toggleMode
+                                                            ? darkTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color
+                                                            : lightTheme
+                                                                .primaryTextTheme
+                                                                .bodySmall
+                                                                ?.color,
                                                   ),
                                                 ),
                                                 Row(
@@ -368,7 +418,16 @@ class RecommendDrinks extends StatelessWidget {
                                                   'Ingredients: ${drinks[index]['ingredients'].join(', ')}',
                                                   style: TextStyle(
                                                     fontSize: 14,
-                                                    color: Colors.black54,
+                                                    color:
+                                                        toggleMode
+                                                            ? darkTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color
+                                                            : lightTheme
+                                                                .primaryTextTheme
+                                                                .bodySmall
+                                                                ?.color,
                                                   ),
                                                 ),
                                               ],
