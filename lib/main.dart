@@ -85,11 +85,14 @@ class _MyAppState extends State<MyApp> {
           child: ListView(
             children: [
               ListTile(
-                leading: Icon(
-                  Icons.bedtime,
-                  color: isDarkMode ? Colors.white : Colors.black,
-                ),
-                title: SwitchListTile(
+                subtitle: SwitchListTile(
+                  title: Text(
+                    'Dark Mode',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+
                   value: isDarkMode,
                   onChanged: (value) async {
                     setState(() {
