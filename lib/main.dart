@@ -8,11 +8,6 @@ void main() {
   runApp(const MyApp());
 }
 
-Future<void> saveThemePreference(bool isDarkMode) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  final result = prefs.setBool('isDarkMode', isDarkMode);
-}
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -54,18 +49,28 @@ ThemeData darkTheme = ThemeData(
 );
 bool isDarkMode = false;
 
+List<String> options = ['Light', 'Dark'];
+
 class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _loadThemePreference(); //
   }
 
+  Future<void> saveThemePreference(bool isDarkMode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final result = prefs.setBool('isDarkMode', isDarkMode);
+  }
+
   Future<void> _loadThemePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       isDarkMode = prefs.getBool('isDarkMode') ?? false;
+      currentOption = isDarkMode ? options[1] : options[0];
     });
   }
+
+  String currentOption = options[0];
 
   @override
   Widget build(BuildContext context) {
@@ -78,28 +83,112 @@ class _MyAppState extends State<MyApp> {
                 ? darkTheme.scaffoldBackgroundColor
                 : lightTheme.scaffoldBackgroundColor,
         appBar: AppBar(
-          title: Text(''),
+          leading: Builder(
+            builder:
+                (context) => IconButton(
+                  icon: Icon(Icons.menu, color: Colors.white),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer(); // Now works!
+                  },
+                ),
+          ),
+          // title: Text('Coffee Menu'),
           backgroundColor: const Color.fromARGB(255, 81, 167, 131),
         ),
         drawer: Drawer(
           child: ListView(
             children: [
-              ListTile(
-                leading: Icon(
-                  Icons.bedtime,
-                  color: isDarkMode ? Colors.white : Colors.black,
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                child: Text(
+                  'Choose Theme',
+                  style: TextStyle(
+                    fontSize: 18,
+
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
                 ),
-                title: SwitchListTile(
-                  value: isDarkMode,
+              ),
+              ListTile(
+                title: Text(
+                  'Light',
+                  style: TextStyle(
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
+                ),
+                leading: Radio(
+                  activeColor: const Color.fromARGB(255, 0, 126, 204),
+                  value: options[0],
+                  groupValue: currentOption,
                   onChanged: (value) async {
                     setState(() {
-                      isDarkMode = value;
-                      print(isDarkMode);
+                      isDarkMode = false;
+                      currentOption = value.toString();
                     });
                     await saveThemePreference(isDarkMode);
                   },
                 ),
               ),
+
+              ListTile(
+                title: Text(
+                  'Dark',
+                  style: TextStyle(
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
+                ),
+                leading: Radio(
+                  activeColor: const Color.fromARGB(
+                    255,
+                    0,
+                    126,
+                    204,
+                  ), // track color whe,
+                  value: options[1],
+                  groupValue: currentOption,
+                  onChanged: (value) async {
+                    setState(() {
+                      isDarkMode = true;
+                      currentOption = value.toString();
+                    });
+                    await saveThemePreference(isDarkMode);
+                  },
+                ),
+              ),
+              // ListTile(
+              //   subtitle: SwitchListTile(
+              //     activeColor: const Color.fromARGB(
+              //       255,
+              //       253,
+              //       255,
+              //       253,
+              //     ), // thumb color when ON
+              //     inactiveThumbColor: Colors.grey, // thumb color when OFF
+              //     activeTrackColor: const Color.fromARGB(
+              //       255,
+              //       0,
+              //       126,
+              //       204,
+              //     ), // track color when ON
+              //     inactiveTrackColor: Colors.black12, // track color when OFF
+              //     title: Text(
+              //       'Dark Mode',
+              //       style: TextStyle(
+              //         color: isDarkMode ? Colors.white : Colors.black,
+              //       ),
+              //     ),
+
+              //     value: isDarkMode,
+              //     onChanged: (value) async {
+              //       setState(() {
+              //         isDarkMode = value;
+              //         print(isDarkMode);
+              //       });
+              //       await saveThemePreference(isDarkMode);
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),
