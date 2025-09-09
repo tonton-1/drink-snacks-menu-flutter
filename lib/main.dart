@@ -118,12 +118,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 leading: Radio(
-                  activeColor: const Color.fromARGB(
-                    255,
-                    0,
-                    126,
-                    204,
-                  ), // track color whe,
+                  activeColor: const Color.fromARGB(255, 0, 126, 204),
                   value: options[0],
                   groupValue: currentOption,
                   onChanged: (value) async {
