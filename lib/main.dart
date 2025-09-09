@@ -66,6 +66,7 @@ class _MyAppState extends State<MyApp> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       isDarkMode = prefs.getBool('isDarkMode') ?? false;
+      currentOption = isDarkMode ? options[1] : options[0];
     });
   }
 
@@ -99,7 +100,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               SizedBox(height: 30),
               Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 child: Text(
                   'Choose Theme',
                   style: TextStyle(
