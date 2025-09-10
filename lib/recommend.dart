@@ -70,7 +70,10 @@ class RecommendDrinks extends StatelessWidget {
   );
   Widget build(BuildContext context) {
     return Container(
-      color: toggleMode ? const Color.fromARGB(255, 54, 54, 54) : Colors.white,
+      color:
+          toggleMode
+              ? darkTheme.scaffoldBackgroundColor
+              : lightTheme.scaffoldBackgroundColor,
       height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
