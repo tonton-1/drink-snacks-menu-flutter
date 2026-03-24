@@ -370,7 +370,6 @@ class _DrinkMenuState extends State<DrinkMenu> {
                             child: SizedBox(
                               height: MediaQuery.of(context).size.height * 0.8,
                               child: Container(
-                                // <--- เอา Stack และ Expanded ด้านนอกออก
                                 color: Color.fromARGB(255, 81, 167, 131),
                                 child: Column(
                                   children: [
