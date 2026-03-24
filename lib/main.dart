@@ -369,358 +369,356 @@ class _DrinkMenuState extends State<DrinkMenu> {
                           child: Material(
                             child: SizedBox(
                               height: MediaQuery.of(context).size.height * 0.8,
-                              child: Stack(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      color: Color.fromARGB(255, 81, 167, 131),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Container(
-                                                  color: Color.fromARGB(
-                                                    255,
-                                                    81,
-                                                    167,
-                                                    131,
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    spacing: 5,
-                                                    children: [
-                                                      Text(
-                                                        myMenu[index]['name'],
-                                                        style: TextStyle(
-                                                          fontSize: 20,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        '${myMenu[index]['price']}฿',
-                                                        style: TextStyle(
-                                                          fontSize: 35,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                    ],
+                              child: Container(
+                                // <--- เอา Stack และ Expanded ด้านนอกออก
+                                color: Color.fromARGB(255, 81, 167, 131),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                            color: Color.fromARGB(
+                                              255,
+                                              81,
+                                              167,
+                                              131,
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              // spacing: 5, <-- Column ไม่มี property ชื่อ spacing
+                                              children: [
+                                                Text(
+                                                  myMenu[index]['name'],
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
                                                   ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                flex: 1,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    (myMenu[index]['image']
-                                                            .startsWith('http')
-                                                        ? Image.network(
-                                                          myMenu[index]['image'],
-                                                          fit: BoxFit.cover,
-                                                          height: 220,
-                                                        )
-                                                        : Image.asset(
-                                                          myMenu[index]['image'],
-                                                          fit: BoxFit.cover,
-                                                          height: 220,
-                                                        )),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Expanded(
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(30),
-                                                topRight: Radius.circular(30),
-                                              ),
-                                              child: Container(
-                                                height: 300,
-                                                width: double.infinity,
-                                                color:
-                                                    isDarkMode
-                                                        ? darkTheme
-                                                            .scaffoldBackgroundColor
-                                                        : lightTheme
-                                                            .scaffoldBackgroundColor,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                        30.0,
-                                                        10.0,
-                                                        10.0,
-                                                        10.0,
-                                                      ),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    spacing: 10,
-                                                    children: [
-                                                      SizedBox(height: 20),
-                                                      Text(
-                                                        'Description',
-                                                        style: TextStyle(
-                                                          color:
-                                                              isDarkMode
-                                                                  ? darkTheme
-                                                                      .primaryTextTheme
-                                                                      .bodyLarge
-                                                                      ?.color
-                                                                  : lightTheme
-                                                                      .primaryTextTheme
-                                                                      .bodyLarge
-                                                                      ?.color,
-                                                          fontSize: 25,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        myMenu[index]['description'],
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          color:
-                                                              isDarkMode
-                                                                  ? darkTheme
-                                                                      .primaryTextTheme
-                                                                      .bodyLarge
-                                                                      ?.color
-                                                                  : lightTheme
-                                                                      .primaryTextTheme
-                                                                      .bodySmall
-                                                                      ?.color,
-                                                        ),
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets.all(
-                                                                  10.0,
-                                                                ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius.circular(
-                                                                    10.0,
-                                                                  ),
-                                                              child: Container(
-                                                                color:
-                                                                    const Color.fromARGB(
-                                                                      76,
-                                                                      81,
-                                                                      167,
-                                                                      131,
-                                                                    ),
-                                                                width: 70,
-                                                                height: 70,
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .coffee,
-                                                                      color: const Color(
-                                                                        0xFF51A783,
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 4,
-                                                                    ), // เว้นระยะระหว่าง Icon กับ Text
-                                                                    Text(
-                                                                      "300ml",
-                                                                      style: TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Color.fromARGB(
-                                                                          255,
-                                                                          81,
-                                                                          167,
-                                                                          131,
-                                                                        ),
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets.all(
-                                                                  10.0,
-                                                                ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius.circular(
-                                                                    10.0,
-                                                                  ),
-                                                              child: Container(
-                                                                color:
-                                                                    const Color.fromARGB(
-                                                                      76,
-                                                                      81,
-                                                                      167,
-                                                                      131,
-                                                                    ),
-                                                                width: 70,
-                                                                height: 70,
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Icon(
-                                                                      myMenu[index]['DrinkTypeOption'] ==
-                                                                              'Hot'
-                                                                          ? Icons
-                                                                              .local_cafe
-                                                                          : myMenu[index]['DrinkTypeOption'] ==
-                                                                              'Iced'
-                                                                          ? Icons
-                                                                              .ac_unit
-                                                                          : Icons
-                                                                              .local_drink,
-                                                                      color:
-                                                                          const Color.fromARGB(
-                                                                            255,
-                                                                            81,
-                                                                            167,
-                                                                            131,
-                                                                          ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 4,
-                                                                    ), // เว้นระยะระหว่าง Icon กับ Text
-                                                                    Text(
-                                                                      myMenu[index]['DrinkTypeOption'] ==
-                                                                              'Hot'
-                                                                          ? "Hot"
-                                                                          : myMenu[index]['DrinkTypeOption'] ==
-                                                                              'Iced'
-                                                                          ? "Iced"
-                                                                          : "Blended",
-                                                                      style: TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Color.fromARGB(
-                                                                          255,
-                                                                          81,
-                                                                          167,
-                                                                          131,
-                                                                        ),
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets.all(
-                                                                  10.0,
-                                                                ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius.circular(
-                                                                    10.0,
-                                                                  ),
-                                                              child: Container(
-                                                                color:
-                                                                    const Color.fromARGB(
-                                                                      76,
-                                                                      81,
-                                                                      167,
-                                                                      131,
-                                                                    ),
-                                                                width: 70,
-                                                                height: 70,
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .do_not_disturb_alt,
-                                                                      color:
-                                                                          const Color.fromARGB(
-                                                                            255,
-                                                                            81,
-                                                                            167,
-                                                                            131,
-                                                                          ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 4,
-                                                                    ), // เว้นระยะระหว่าง Icon กับ Text
-                                                                    Text(
-                                                                      "No sugar",
-                                                                      style: TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Color.fromARGB(
-                                                                          255,
-                                                                          81,
-                                                                          167,
-                                                                          131,
-                                                                        ),
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(height: 10),
-                                                      Text(
-                                                        'Ingredients: ${myMenu[index]['ingredients'].join(', ')}',
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          color:
-                                                              isDarkMode
-                                                                  ? darkTheme
-                                                                      .primaryTextTheme
-                                                                      .bodyLarge
-                                                                      ?.color
-                                                                  : lightTheme
-                                                                      .primaryTextTheme
-                                                                      .bodySmall
-                                                                      ?.color,
-                                                        ),
-                                                      ),
-                                                    ],
+                                                SizedBox(
+                                                  height: 5,
+                                                ), // ใช้ SizedBox แทน spacing
+                                                Text(
+                                                  '${myMenu[index]['price']}฿',
+                                                  style: TextStyle(
+                                                    fontSize: 35,
+                                                    color: Colors.white,
                                                   ),
                                                 ),
-                                              ),
+                                              ],
                                             ),
                                           ),
-                                        ],
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              (myMenu[index]['image']
+                                                      .startsWith('http')
+                                                  ? Image.network(
+                                                    myMenu[index]['image'],
+                                                    fit: BoxFit.cover,
+                                                    height: 220,
+                                                  )
+                                                  : Image.asset(
+                                                    myMenu[index]['image'],
+                                                    fit: BoxFit.cover,
+                                                    height: 220,
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30),
+                                        ),
+                                        child: Container(
+                                          height: 300,
+                                          width: double.infinity,
+                                          color:
+                                              isDarkMode
+                                                  ? darkTheme
+                                                      .scaffoldBackgroundColor
+                                                  : lightTheme
+                                                      .scaffoldBackgroundColor,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                              30.0,
+                                              10.0,
+                                              10.0,
+                                              10.0,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              // spacing: 10, <-- Column ไม่มี property ชื่อ spacing
+                                              children: [
+                                                SizedBox(height: 20),
+                                                Text(
+                                                  'Description',
+                                                  style: TextStyle(
+                                                    color:
+                                                        isDarkMode
+                                                            ? darkTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color
+                                                            : lightTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ), // ใช้ SizedBox แทน spacing
+                                                Text(
+                                                  myMenu[index]['description'],
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    color:
+                                                        isDarkMode
+                                                            ? darkTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color
+                                                            : lightTheme
+                                                                .primaryTextTheme
+                                                                .bodySmall
+                                                                ?.color,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                            10.0,
+                                                          ),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              10.0,
+                                                            ),
+                                                        child: Container(
+                                                          color:
+                                                              const Color.fromARGB(
+                                                                76,
+                                                                81,
+                                                                167,
+                                                                131,
+                                                              ),
+                                                          width: 70,
+                                                          height: 70,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons.coffee,
+                                                                color:
+                                                                    const Color(
+                                                                      0xFF51A783,
+                                                                    ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 4,
+                                                              ), // เว้นระยะระหว่าง Icon กับ Text
+                                                              Text(
+                                                                "300ml",
+                                                                style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  color:
+                                                                      Color.fromARGB(
+                                                                        255,
+                                                                        81,
+                                                                        167,
+                                                                        131,
+                                                                      ),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                            10.0,
+                                                          ),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              10.0,
+                                                            ),
+                                                        child: Container(
+                                                          color:
+                                                              const Color.fromARGB(
+                                                                76,
+                                                                81,
+                                                                167,
+                                                                131,
+                                                              ),
+                                                          width: 70,
+                                                          height: 70,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                myMenu[index]['DrinkTypeOption'] ==
+                                                                        'Hot'
+                                                                    ? Icons
+                                                                        .local_cafe
+                                                                    : myMenu[index]['DrinkTypeOption'] ==
+                                                                        'Iced'
+                                                                    ? Icons
+                                                                        .ac_unit
+                                                                    : Icons
+                                                                        .local_drink,
+                                                                color:
+                                                                    const Color.fromARGB(
+                                                                      255,
+                                                                      81,
+                                                                      167,
+                                                                      131,
+                                                                    ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 4,
+                                                              ), // เว้นระยะระหว่าง Icon กับ Text
+                                                              Text(
+                                                                myMenu[index]['DrinkTypeOption'] ==
+                                                                        'Hot'
+                                                                    ? "Hot"
+                                                                    : myMenu[index]['DrinkTypeOption'] ==
+                                                                        'Iced'
+                                                                    ? "Iced"
+                                                                    : "Blended",
+                                                                style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  color:
+                                                                      Color.fromARGB(
+                                                                        255,
+                                                                        81,
+                                                                        167,
+                                                                        131,
+                                                                      ),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                            10.0,
+                                                          ),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              10.0,
+                                                            ),
+                                                        child: Container(
+                                                          color:
+                                                              const Color.fromARGB(
+                                                                76,
+                                                                81,
+                                                                167,
+                                                                131,
+                                                              ),
+                                                          width: 70,
+                                                          height: 70,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .do_not_disturb_alt,
+                                                                color:
+                                                                    const Color.fromARGB(
+                                                                      255,
+                                                                      81,
+                                                                      167,
+                                                                      131,
+                                                                    ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 4,
+                                                              ), // เว้นระยะระหว่าง Icon กับ Text
+                                                              Text(
+                                                                "No sugar",
+                                                                style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  color:
+                                                                      Color.fromARGB(
+                                                                        255,
+                                                                        81,
+                                                                        167,
+                                                                        131,
+                                                                      ),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10),
+                                                Text(
+                                                  'Ingredients: ${myMenu[index]['ingredients'].join(', ')}',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    color:
+                                                        isDarkMode
+                                                            ? darkTheme
+                                                                .primaryTextTheme
+                                                                .bodyLarge
+                                                                ?.color
+                                                            : lightTheme
+                                                                .primaryTextTheme
+                                                                .bodySmall
+                                                                ?.color,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
