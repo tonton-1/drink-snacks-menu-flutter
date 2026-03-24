@@ -75,6 +75,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: isDarkMode ? darkTheme : lightTheme,
       home: Scaffold(
@@ -237,8 +238,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
     {
       'name': 'Vanilla Latte',
       'color': Color.fromARGB(255, 81, 167, 131),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2021-06/Vanilla%20Latte_LongShadow_Cream_0.png',
+      'image': 'images/drinks/Vanilla_Latte.png',
       'price': 90,
       'description': 'A creamy and sweet vanilla latte.',
       'ingredients': [
@@ -252,8 +252,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
     {
       'name': 'Caffé Americano',
       'color': Color.fromARGB(255, 81, 167, 131),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2021-06/3-CaffeAmericano_LongShadow_Cream.png',
+      'image': 'images/drinks/Caffe_Americano.png',
       'price': 70,
       'description': 'A rich and bold coffee with hot water.',
       'ingredients': ['Espresso', 'Hot Water'],
@@ -262,8 +261,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
     {
       'name': 'Caffé Mocha',
       'color': Color.fromARGB(255, 81, 167, 131),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2021-06/10032021_CafeMocha_LS-min.png',
+      'image': 'images/drinks/Caffe_Mocha.png',
       'price': 100,
       'description': 'A rich and chocolatey coffee drink.',
       'ingredients': [
@@ -277,8 +275,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
     {
       'name': 'Spiced Flat White',
       'color': Color.fromARGB(255, 81, 167, 131),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2021-06/10032021_SpicedExpresso_LS-min.png',
+      'image': 'images/drinks/Spiced_Flat_White.png',
       'price': 80,
       'description': 'A warm and cozy coffee with a hint of spice.',
       'ingredients': ['Espresso', 'Steamed Milk', 'Cinnamon', 'Nutmeg'],
@@ -287,8 +284,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
     {
       'name': 'Freddo Espresso',
       'color': Color.fromARGB(255, 81, 167, 131),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2024-01/Freddo%20Espresso%20KV_Transp_Straw_Contact%20Shadow_0.png',
+      'image': 'images/drinks/Freddo_Espresso.png',
       'price': 65,
       'description': 'A chilled espresso drink served over ice.',
       'ingredients': ['Espresso', 'Ice'],
@@ -297,8 +293,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
     {
       'name': 'White Chocolate Mocha',
       'color': Color.fromARGB(255, 81, 167, 131),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2024-08/Starbucks%20SBU_EvergreenRecipes2023_Website_Recipes_Still_WhiteChocolateMocha_1842x1542_Long%20Shadow.png',
+      'image': 'images/drinks/White_Chocolate_Mocha.png',
       'price': 110,
       'description': 'A rich and creamy white chocolate mocha.',
       'ingredients': [

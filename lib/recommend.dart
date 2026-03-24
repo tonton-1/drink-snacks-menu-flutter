@@ -7,8 +7,7 @@ class RecommendDrinks extends StatelessWidget {
     {
       'name': 'Iced Cappuccino',
       'color': Color.fromARGB(255, 171, 179, 125),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2022-12/Iced%20Cappuccino%20KV_Long%20Shadow.png',
+      'image': 'images/drinks/Iced_Cappuccino.png',
       'price': 120,
       'description': 'A delicious iced cappuccino with a rich coffee flavor.',
       'ingredients': ['Espresso', 'Milk', 'Ice', 'Cocoa Powder'],
@@ -17,8 +16,7 @@ class RecommendDrinks extends StatelessWidget {
     {
       'name': 'Iced Coconut Coffee',
       'color': Color.fromARGB(255, 171, 179, 125),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2022-12/Iced%20Coconut%20KV_Short%20Shadow.png',
+      'image': 'images/drinks/Iced_Coconut_Coffee.png',
       'price': 130,
       'description': 'A refreshing iced coconut coffee with a tropical twist.',
       'ingredients': ['Espresso', 'Coconut Milk', 'Ice'],
@@ -27,8 +25,7 @@ class RecommendDrinks extends StatelessWidget {
     {
       'name': 'Iced Mocha',
       'color': Color.fromARGB(255, 171, 179, 125),
-      'image':
-          'https://www.starbucksathome.com/au/sites/default/files/2022-12/Iced%20Mocha%20KV_Short%20Shadow.png',
+      'image': 'images/drinks/Iced_Mocha.png',
       'price': 140,
       'description': 'A rich and creamy iced mocha with a hint of chocolate.',
       'ingredients': ['Espresso', 'Milk', 'Ice', 'Chocolate Syrup'],
@@ -461,7 +458,7 @@ class RecommendDrinks extends StatelessWidget {
 
               child: Column(
                 children: [
-                  Image.network(
+                  Image.asset(
                     drinks[index]['image']!,
                     width: 120,
                     height: 100,
